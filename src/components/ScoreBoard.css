@@ -1,0 +1,41 @@
+/* src/components/ScoreBoard.css */
+.scoreboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    position: relative;
+  }
+  
+  .player {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  }
+  
+  .north {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .south {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .east {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .west {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }

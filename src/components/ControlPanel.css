@@ -1,0 +1,12 @@
+/* src/components/ControlPanel.css */
+.control-panel {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dealer-buttons button,
+.reach-buttons button {
+  margin: 5px;
+}

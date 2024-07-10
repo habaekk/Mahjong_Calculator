@@ -1,0 +1,23 @@
+/* src/components/Player.css */
+.player {
+    border: 1px solid black;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  .position {
+    font-weight: bold;
+  }
+  
+  .dealer {
+    color: red;
+  }
+  
+  .score {
+    cursor: pointer;
+  }
+  
+  .reach {
+    color: blue;
+    font-weight: bold;
+  }
