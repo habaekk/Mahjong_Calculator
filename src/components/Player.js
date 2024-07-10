@@ -19,23 +19,26 @@ function Player({ position, score, isDealer, isReach, updateScore, editMode }) {
 
   return (
     <div className={`player ${position}`}>
-      <div className="player-details">
-        <div className={`position ${isDealer ? 'dealer' : ''}`}>
-          {position} {isDealer && '東'}
-        </div>
-        <div className="score">
-          {editMode ? (
-            <input
-              type="number"
-              value={newScore}
-              onChange={handleScoreChange}
-              onBlur={handleScoreSubmit}
-            />
-          ) : (
-            <span>{score}</span>
-          )}
-        </div>
-        {isReach && <div className="reach">리치!</div>}
+      <div className="empty-space"> {/* 빈칸 추가 */}
+        &nbsp;
+      </div>
+      <div className={`position ${isDealer ? 'dealer' : ''}`}>
+        {position} {isDealer && '東'}
+      </div>
+      <div className="score">
+        {editMode ? (
+          <input
+            type="number"
+            value={newScore}
+            onChange={handleScoreChange}
+            onBlur={handleScoreSubmit}
+          />
+        ) : (
+          <span>{score}</span>
+        )}
+      </div>
+      <div className="reach">
+        {isReach ? '리치!' : '\u00A0'} {/* 리치가 없을 때 빈칸 표시 */}
       </div>
     </div>
   );
