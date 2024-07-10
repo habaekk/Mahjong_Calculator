@@ -19,22 +19,24 @@ function Player({ position, score, isDealer, isReach, updateScore, editMode }) {
 
   return (
     <div className={`player ${position}`}>
-      <div className={`position ${isDealer ? 'dealer' : ''}`}>
-        {position} {isDealer && '東'}
+      <div className="player-details">
+        <div className={`position ${isDealer ? 'dealer' : ''}`}>
+          {position} {isDealer && '東'}
+        </div>
+        <div className="score">
+          {editMode ? (
+            <input
+              type="number"
+              value={newScore}
+              onChange={handleScoreChange}
+              onBlur={handleScoreSubmit}
+            />
+          ) : (
+            <span>{score}</span>
+          )}
+        </div>
+        {isReach && <div className="reach">리치!</div>}
       </div>
-      <div className="score">
-        {editMode ? (
-          <input
-            type="number"
-            value={newScore}
-            onChange={handleScoreChange}
-            onBlur={handleScoreSubmit}
-          />
-        ) : (
-          <span>{score}</span>
-        )}
-      </div>
-      {isReach && <div className="reach">리치!</div>}
     </div>
   );
 }
