@@ -3,45 +3,20 @@ import React from 'react';
 import Player from './Player';
 import './ScoreBoard.css';
 
-function ScoreBoard({ scores, dealer, reaches, updateScore }) {
+function ScoreBoard({ scores, dealer, reaches, updateScore, editMode }) {
   return (
     <div className="scoreboard">
-      <div className="player north">
+      {Object.keys(scores).map((position) => (
         <Player
-          position="north"
-          score={scores.north}
-          isDealer={dealer === 'north'}
-          isReach={reaches.north}
+          key={position}
+          position={position}
+          score={scores[position]}
+          isDealer={dealer === position}
+          isReach={reaches[position]}
           updateScore={updateScore}
+          editMode={editMode}
         />
-      </div>
-      <div className="player west">
-        <Player
-          position="west"
-          score={scores.west}
-          isDealer={dealer === 'west'}
-          isReach={reaches.west}
-          updateScore={updateScore}
-        />
-      </div>
-      <div className="player east">
-        <Player
-          position="east"
-          score={scores.east}
-          isDealer={dealer === 'east'}
-          isReach={reaches.east}
-          updateScore={updateScore}
-        />
-      </div>
-      <div className="player south">
-        <Player
-          position="south"
-          score={scores.south}
-          isDealer={dealer === 'south'}
-          isReach={reaches.south}
-          updateScore={updateScore}
-        />
-      </div>
+      ))}
     </div>
   );
 }

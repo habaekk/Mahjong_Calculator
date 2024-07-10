@@ -1,4 +1,3 @@
-/* src/components/ControlPanel.css */
 .control-panel {
   margin-top: 20px;
   display: flex;
@@ -7,6 +6,7 @@
 }
 
 .dealer-buttons button,
-.reach-buttons button {
+.reach-buttons button,
+.edit-button button {
   margin: 5px;
 }

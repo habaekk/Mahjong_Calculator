@@ -2,7 +2,7 @@
 import React from 'react';
 import './ControlPanel.css';
 
-function ControlPanel({ dealer, toggleDealer, toggleReach, extensionCount, handleExtensionCount, handleDraw }) {
+function ControlPanel({ dealer, toggleDealer, toggleReach, extensionCount, handleExtensionCount, handleDraw, editMode, toggleEditMode }) {
   return (
     <div className="control-panel">
       <div className="extension-count">
@@ -25,6 +25,11 @@ function ControlPanel({ dealer, toggleDealer, toggleReach, extensionCount, handl
             리치 {pos}
           </button>
         ))}
+      </div>
+      <div className="edit-button">
+        <button onClick={toggleEditMode}>
+          {editMode ? '편집 모드 종료' : '편집 모드 시작'}
+        </button>
       </div>
     </div>
   );

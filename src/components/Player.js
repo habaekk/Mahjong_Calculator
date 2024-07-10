@@ -1,10 +1,13 @@
 // src/components/Player.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Player.css';
 
-function Player({ position, score, isDealer, isReach, updateScore }) {
-  const [editMode, setEditMode] = useState(false);
+function Player({ position, score, isDealer, isReach, updateScore, editMode }) {
   const [newScore, setNewScore] = useState(score);
+
+  useEffect(() => {
+    setNewScore(score);
+  }, [score, editMode]);
 
   const handleScoreChange = (e) => {
     setNewScore(e.target.value);
@@ -12,7 +15,6 @@ function Player({ position, score, isDealer, isReach, updateScore }) {
 
   const handleScoreSubmit = () => {
     updateScore(position, parseInt(newScore, 10));
-    setEditMode(false);
   };
 
   return (
@@ -29,7 +31,7 @@ function Player({ position, score, isDealer, isReach, updateScore }) {
             onBlur={handleScoreSubmit}
           />
         ) : (
-          <span onClick={() => setEditMode(true)}>{score}</span>
+          <span>{score}</span>
         )}
       </div>
       {isReach && <div className="reach">리치!</div>}

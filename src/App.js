@@ -10,6 +10,7 @@ function App() {
   const [dealer, setDealer] = useState('east');
   const [reaches, setReaches] = useState({ east: false, south: false, west: false, north: false });
   const [extensionCount, setExtensionCount] = useState(0);
+  const [editMode, setEditMode] = useState(false);
 
   const updateScore = (position, newScore) => {
     setScores({ ...scores, [position]: newScore });
@@ -31,9 +32,13 @@ function App() {
     // Logic for handling a draw
   };
 
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
+
   return (
     <div className="App">
-      <ScoreBoard scores={scores} dealer={dealer} reaches={reaches} updateScore={updateScore} />
+      <ScoreBoard scores={scores} dealer={dealer} reaches={reaches} updateScore={updateScore} editMode={editMode} />
       <ControlPanel
         dealer={dealer}
         toggleDealer={toggleDealer}
@@ -41,6 +46,8 @@ function App() {
         extensionCount={extensionCount}
         handleExtensionCount={handleExtensionCount}
         handleDraw={handleDraw}
+        editMode={editMode}
+        toggleEditMode={toggleEditMode}
       />
     </div>
   );
