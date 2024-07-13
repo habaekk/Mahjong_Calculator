@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "마작 점수 계산기",
+  "name": "오프라인 마작 점수 계산기",
   "icons": [
     {
       "src": "favicon.ico",
