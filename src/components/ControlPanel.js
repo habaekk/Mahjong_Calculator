@@ -5,6 +5,7 @@ import './ControlPanel.css';
 function ControlPanel({ dealer, toggleDealer, toggleReach, extensionCount, handleExtensionCount, handleDraw, editMode, toggleEditMode }) {
   return (
     <div className="control-panel">
+      {/*
       <div className="extension-count">
         연장 횟수: {extensionCount}
         <button onClick={handleExtensionCount}>연장</button>
@@ -12,6 +13,7 @@ function ControlPanel({ dealer, toggleDealer, toggleReach, extensionCount, handl
       <div className="draw-button">
         <button onClick={handleDraw}>유국</button>
       </div>
+      */}
       <div className="dealer-buttons">
         {['east', 'south', 'west', 'north'].map((pos) => (
           <button key={pos} onClick={() => toggleDealer(pos)}>
