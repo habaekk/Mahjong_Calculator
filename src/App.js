@@ -9,6 +9,18 @@ function App() {
   const [extensionCount, setExtensionCount] = useState(0);
   const [editMode, setEditMode] = useState(false);
 
+  const [toggled, setToggled] = useState({
+    north: false,
+    east: false,
+    south: false,
+    west: false,
+    extension: false,
+    empty1: false,
+    empty2: false,
+    empty3: false,
+    empty4: false
+  });
+
   const updateScore = (position, newScore) => {
     setScores({ ...scores, [position]: newScore });
   };
@@ -33,19 +45,59 @@ function App() {
     setEditMode(!editMode);
   };
 
+  const handleToggle = (position) => {
+    setToggled({ ...toggled, [position]: !toggled[position] });
+  };
+
   return (
     <div className="App">
       <div className="grid-container">
-        <div className="grid-item player north">North: {scores.north}</div>
-        <div className="grid-item extension-count">Extensions: {extensionCount}</div>
-        <div className="grid-item player east">East: {scores.east}</div>
-        <div className="grid-item player south">South: {scores.south}</div>
-        <div className="grid-item player west">West: {scores.west}</div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-
+        <div
+          className={`grid-item player north ${toggled.north ? 'toggled' : ''}`}
+          onClick={() => handleToggle('north')}
+        >
+          North: {scores.north}
+        </div>
+        <div
+          className={`grid-item extension-count ${toggled.extension ? 'toggled' : ''}`}
+          onClick={() => handleToggle('extension')}
+        >
+          Extensions: {extensionCount}
+        </div>
+        <div
+          className={`grid-item player east ${toggled.east ? 'toggled' : ''}`}
+          onClick={() => handleToggle('east')}
+        >
+          East: {scores.east}
+        </div>
+        <div
+          className={`grid-item player south ${toggled.south ? 'toggled' : ''}`}
+          onClick={() => handleToggle('south')}
+        >
+          South: {scores.south}
+        </div>
+        <div
+          className={`grid-item player west ${toggled.west ? 'toggled' : ''}`}
+          onClick={() => handleToggle('west')}
+        >
+          West: {scores.west}
+        </div>
+        <div
+          className={`grid-item empty ${toggled.empty1 ? 'toggled' : ''}`}
+          onClick={() => handleToggle('empty1')}
+        ></div>
+        <div
+          className={`grid-item empty ${toggled.empty2 ? 'toggled' : ''}`}
+          onClick={() => handleToggle('empty2')}
+        ></div>
+        <div
+          className={`grid-item empty ${toggled.empty3 ? 'toggled' : ''}`}
+          onClick={() => handleToggle('empty3')}
+        ></div>
+        <div
+          className={`grid-item empty ${toggled.empty4 ? 'toggled' : ''}`}
+          onClick={() => handleToggle('empty4')}
+        ></div>
       </div>
     </div>
   );

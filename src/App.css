@@ -11,8 +11,8 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
-  width: 80vmin; /* Width is 80% of the smaller viewport dimension */
-  height: 80vmin; /* Height is 80% of the smaller viewport dimension */
+  width: 80vmin;
+  height: 80vmin;
 }
 
 .grid-item {
@@ -24,7 +24,12 @@
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  aspect-ratio: 1 / 1; /* Ensures each grid item is a square */
+  aspect-ratio: 1 / 1;
+  cursor: pointer; /* Indicates that the item is clickable */
+}
+
+.grid-item.toggled {
+  background-color: #ccc; /* Change to gray when toggled */
 }
 
 .player.north {
