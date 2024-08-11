@@ -1,9 +1,58 @@
-/* src/App.css */
 .App {
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  flex-direction: column;
+  background-color: #f0f0f0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  width: 80vmin; /* Width is 80% of the smaller viewport dimension */
+  height: 80vmin; /* Height is 80% of the smaller viewport dimension */
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  aspect-ratio: 1 / 1; /* Ensures each grid item is a square */
+}
+
+.player.north {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.player.east {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.player.south {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+
+.player.west {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.extension-count {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  background-color: #f7f7f7;
+}
+
+.empty {
+  grid-column: span 1;
 }

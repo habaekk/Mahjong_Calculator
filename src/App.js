@@ -1,7 +1,4 @@
-// src/App.js
 import React, { useState } from 'react';
-import ScoreBoard from './components/ScoreBoard';
-import ControlPanel from './components/ControlPanel';
 import './App.css';
 
 function App() {
@@ -38,17 +35,18 @@ function App() {
 
   return (
     <div className="App">
-      <ScoreBoard scores={scores} dealer={dealer} reaches={reaches} updateScore={updateScore} editMode={editMode} />
-      <ControlPanel
-        dealer={dealer}
-        toggleDealer={toggleDealer}
-        toggleReach={toggleReach}
-        extensionCount={extensionCount}
-        handleExtensionCount={handleExtensionCount}
-        handleDraw={handleDraw}
-        editMode={editMode}
-        toggleEditMode={toggleEditMode}
-      />
+      <div className="grid-container">
+        <div className="grid-item player north">North: {scores.north}</div>
+        <div className="grid-item extension-count">Extensions: {extensionCount}</div>
+        <div className="grid-item player east">East: {scores.east}</div>
+        <div className="grid-item player south">South: {scores.south}</div>
+        <div className="grid-item player west">West: {scores.west}</div>
+        <div className="grid-item empty"></div>
+        <div className="grid-item empty"></div>
+        <div className="grid-item empty"></div>
+        <div className="grid-item empty"></div>
+
+      </div>
     </div>
   );
 }
