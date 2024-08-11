@@ -21,62 +21,46 @@ function App() {
     empty4: false
   });
 
-  const updateScore = (position, newScore) => {
-    setScores({ ...scores, [position]: newScore });
-  };
-
-  const toggleDealer = (newDealer) => {
-    setDealer(newDealer);
-  };
-
-  const toggleReach = (position) => {
-    setReaches({ ...reaches, [position]: !reaches[position] });
-  };
-
-  const handleExtensionCount = () => {
-    setExtensionCount(extensionCount + 1);
-  };
-
-  const handleDraw = () => {
-    // Logic for handling a draw
-    console.log('Draw triggered');
-  };
-
-  const toggleEditMode = () => {
-    setEditMode(!editMode);
-  };
+  const [selectedOrder, setSelectedOrder] = useState([]); // Array to track the order of selections
 
   const handleToggle = (position) => {
     const isAlreadyToggled = toggled[position];
     const newToggled = { ...toggled, [position]: !toggled[position] };
-    const toggledCount = Object.values(newToggled).filter((val) => val).length;
 
     if (isAlreadyToggled) {
-      // Handle the case where the same block is clicked twice to toggle off
-      console.log(`Block ${position} toggled off`);
+      // Handle the case where the same block is clicked twice (to toggle off)
+      console.log(`Block ${position} was toggled off`);
+      const newSelectedOrder = selectedOrder.filter((item) => item !== position); // Remove the block from the selection order
       setToggled(newToggled);
-    } else if (toggledCount === 2) {
-      // If two blocks are toggled, delay the reset by 1 second
-      const selectedBlocks = Object.keys(newToggled).filter((key) => newToggled[key]);
-
-      setToggled(newToggled);
-      setTimeout(() => {
-        console.log('Selected blocks:', selectedBlocks); // Log the selected blocks to the console
-        setToggled({
-          north: false,
-          east: false,
-          south: false,
-          west: false,
-          extension: false,
-          empty1: false,
-          empty2: false,
-          empty3: false,
-          empty4: false
-        });
-        handleDraw(); // Trigger the specific function after the delay
-      }, 1000);
+      setSelectedOrder(newSelectedOrder);
     } else {
+      // Handle the case where a new block is toggled on
+      const newSelectedOrder = [...selectedOrder, position]; // Add the block to the selection order
       setToggled(newToggled);
+      setSelectedOrder(newSelectedOrder);
+
+      if (newSelectedOrder.length === 2) {
+        // If two blocks are toggled, delay the reset by 1 second
+        setTimeout(() => {
+          const [firstBlock, secondBlock] = newSelectedOrder; // Get the first and second selected blocks
+          console.log('First selected block:', firstBlock); // Log the first selected block
+          console.log('Second selected block:', secondBlock); // Log the second selected block
+
+          setToggled({
+            north: false,
+            east: false,
+            south: false,
+            west: false,
+            extension: false,
+            empty1: false,
+            empty2: false,
+            empty3: false,
+            empty4: false
+          });
+
+          setSelectedOrder([]); // Reset the selection order
+        }, 100);
+      }
     }
   };
 
