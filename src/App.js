@@ -53,11 +53,15 @@ function App() {
 
     if (isAlreadyToggled) {
       // Handle the case where the same block is clicked twice to toggle off
+      console.log(`Block ${position} toggled off`);
       setToggled(newToggled);
     } else if (toggledCount === 2) {
       // If two blocks are toggled, delay the reset by 1 second
+      const selectedBlocks = Object.keys(newToggled).filter((key) => newToggled[key]);
+
       setToggled(newToggled);
       setTimeout(() => {
+        console.log('Selected blocks:', selectedBlocks); // Log the selected blocks to the console
         setToggled({
           north: false,
           east: false,
@@ -70,7 +74,7 @@ function App() {
           empty4: false
         });
         handleDraw(); // Trigger the specific function after the delay
-      }, 100);
+      }, 1000);
     } else {
       setToggled(newToggled);
     }
