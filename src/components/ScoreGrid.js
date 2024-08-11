@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './GridComponent.css';
+import './ScoreGrid.css';
 
-const GridComponent = () => {
+const ScoreGrid = () => {
   const rows = 12;
   const columns = 14;
   const initialGridState = Array(rows)
@@ -20,13 +20,13 @@ const GridComponent = () => {
   };
 
   return (
-    <div className="grid-container">
+    <div className="score-grid-container">
       {grid.map((row, rowIndex) => (
-        <div key={rowIndex} className="grid-row">
+        <div key={rowIndex} className="score-grid-row">
           {row.map((cell, colIndex) => (
             <div
               key={colIndex}
-              className={`grid-cell ${cell ? 'toggled' : ''}`}
+              className={`score-grid-cell ${cell ? 'score-grid-toggled' : ''}`}
               onClick={() => handleCellToggle(rowIndex, colIndex)}
             ></div>
           ))}
@@ -36,4 +36,4 @@ const GridComponent = () => {
   );
 };
 
-export default GridComponent;
+export default ScoreGrid;

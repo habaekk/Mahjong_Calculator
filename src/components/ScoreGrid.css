@@ -1,4 +1,4 @@
-.grid-container {
+.score-grid-container {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
     grid-template-rows: repeat(12, 1fr);
@@ -8,11 +8,11 @@
     height: auto;
   }
   
-  .grid-row {
+  .score-grid-row {
     display: contents;
   }
   
-  .grid-cell {
+  .score-grid-cell {
     background-color: #ddd;
     border: 1px solid #999;
     aspect-ratio: 1 / 1;
@@ -20,7 +20,7 @@
     transition: background-color 0.3s;
   }
   
-  .grid-cell.toggled {
+  .score-grid-cell.score-grid-toggled {
     background-color: #4caf50; /* Color when toggled */
   }
   

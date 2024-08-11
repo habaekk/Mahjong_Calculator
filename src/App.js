@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Modal from './components/Modal';
 
 function App() {
   const initialScores = { east: 25000, south: 25000, west: 25000, north: 25000 };
@@ -22,6 +23,31 @@ function App() {
   });
 
   const [selectedOrder, setSelectedOrder] = useState([]); // Array to track the order of selections
+
+  const updateScore = (position, newScore) => {
+    setScores({ ...scores, [position]: newScore });
+  };
+
+  const toggleDealer = (newDealer) => {
+    setDealer(newDealer);
+  };
+
+  const toggleReach = (position) => {
+    setReaches({ ...reaches, [position]: !reaches[position] });
+  };
+
+  const handleExtensionCount = () => {
+    setExtensionCount(extensionCount + 1);
+  };
+
+  const handleDraw = () => {
+    // Logic for handling a draw
+    console.log('Draw triggered');
+  };
+
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
 
   const handleToggle = (position) => {
     const isAlreadyToggled = toggled[position];
@@ -59,7 +85,8 @@ function App() {
           });
 
           setSelectedOrder([]); // Reset the selection order
-        }, 100);
+          handleDraw(); // Trigger the specific function after the delay
+        }, 1000);
       }
     }
   };
