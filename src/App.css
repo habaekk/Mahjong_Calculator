@@ -79,16 +79,12 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #f0f0f0;
-  transition: background-color 0.3s;
+  transition: background-color 0.1s;
 }
 
 .player-buttons button.active {
   background-color: #4caf50; /* Green background when active */
   color: white;
-}
-
-.player-buttons button:hover {
-  background-color: #e0e0e0;
 }
 
 .status {
