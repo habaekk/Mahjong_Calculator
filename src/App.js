@@ -100,11 +100,16 @@ function App() {
             className={`grid-item player ${player.id} ${toggled[player.id] ? 'toggled' : ''}`}
             onClick={() => handleToggle(player.id)}
           >
-            {player.id.charAt(0).toUpperCase() + player.id.slice(1)}: {player.score}
+            <div className="player-status">
+              <div>{player.id.charAt(0).toUpperCase() + player.id.slice(1)}: {player.score}</div>
+              {player.oya && <div className="status oya">오야</div>}
+              {player.reach && <div className="status reach">리치!</div>}
+            </div>
           </div>
         ))}
         <div
           className={`grid-item extension-count ${toggled.extension ? 'toggled' : ''}`}
+          onClick={() => handleToggle('extension')}
         >
           Extensions: {extensionCount}
         </div>
