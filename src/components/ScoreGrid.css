@@ -1,0 +1,26 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 5px; /* Adjust the gap between cells if needed */
+    width: 100%;
+    max-width: 80vmin; /* Ensures the grid is responsive */
+    height: auto;
+  }
+  
+  .grid-row {
+    display: contents;
+  }
+  
+  .grid-cell {
+    background-color: #ddd;
+    border: 1px solid #999;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .grid-cell.toggled {
+    background-color: #4caf50; /* Color when toggled */
+  }
+  
