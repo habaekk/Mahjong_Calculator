@@ -1,10 +1,10 @@
 .score-grid-container {
     display: grid;
-    grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(14, 1fr); /* 14 columns */
+    grid-template-rows: repeat(12, 1fr); /* 12 rows */
     gap: 5px; /* Adjust the gap between cells if needed */
     width: 100%;
-    max-width: 80vmin; /* Ensures the grid is responsive */
+    max-width: 90vmin; /* Ensures the grid is responsive */
     height: auto;
   }
   
@@ -13,11 +13,15 @@
   }
   
   .score-grid-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #ddd;
     border: 1px solid #999;
     aspect-ratio: 1 / 1;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 0.8rem; /* Adjust font size for content */
   }
   
   .score-grid-cell.score-grid-toggled {
