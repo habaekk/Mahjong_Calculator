@@ -3,6 +3,7 @@ import './App.css';
 import Modal from './components/Modal';
 import { useRecoilState } from 'recoil';
 import { playersState } from './recoil/playerState';
+import Ron from './Ron'; // Ron 함수 import
 
 function App() {
   const [players, setPlayers] = useRecoilState(playersState); // Recoil 상태 사용
@@ -91,6 +92,15 @@ function App() {
     );
   };
 
+  const handleRon = () => {
+    // 예시로 East가 South를 이긴 상황을 가정
+    const winner = 25000
+    const loser = 25000
+
+    const result = Ron(3, 30, winner, loser);
+    console.log('Ron 결과:', result);
+  };
+
   return (
     <div className="App">
       <div className="grid-container">
@@ -113,7 +123,9 @@ function App() {
         >
           Extensions: {extensionCount}
         </div>
-        <div className="grid-item empty"></div> {/* empty1 */}
+        <div className="grid-item empty">
+          <button onClick={handleRon}>론 실행</button>
+        </div> {/* empty1 */}
         <div className="grid-item empty"></div> {/* empty2 */}
         <div className="grid-item empty"></div> {/* empty3 */}
         <div className="grid-item empty">
