@@ -47,12 +47,16 @@ function App() {
   };
 
   const handleToggle = (position) => {
+    const isAlreadyToggled = toggled[position];
     const newToggled = { ...toggled, [position]: !toggled[position] };
     const toggledCount = Object.values(newToggled).filter((val) => val).length;
 
-    if (toggledCount === 2) {
+    if (isAlreadyToggled) {
+      // Handle the case where the same block is clicked twice to toggle off
       setToggled(newToggled);
-      // Delay the reset by 1 second (1000ms)
+    } else if (toggledCount === 2) {
+      // If two blocks are toggled, delay the reset by 1 second
+      setToggled(newToggled);
       setTimeout(() => {
         setToggled({
           north: false,
