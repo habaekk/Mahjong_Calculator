@@ -6,25 +6,29 @@
     width: 100%;
     max-width: 90vmin; /* Ensures the grid is responsive */
     height: auto;
-  }
-  
-  .score-grid-row {
+}
+
+.score-grid-row {
     display: contents;
-  }
-  
-  .score-grid-cell {
+}
+
+.score-grid-cell {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ddd;
     border: 1px solid #999;
     aspect-ratio: 1.2 / 1;
-    cursor: pointer;
-    transition: background-color 0.3s;
     font-size: 0.8rem; /* Adjust font size for content */
-  }
-  
-  .score-grid-cell.score-grid-toggled {
+    transition: background-color 0.3s;
+}
+
+/* Hover effect only for cells with " " content */
+.hoverable:hover {
+    cursor: pointer;
+    background-color: #e0e0e0; /* Slight background change on hover */
+}
+
+.score-grid-cell.score-grid-toggled {
     background-color: #4caf50; /* Color when toggled */
-  }
-  
+}
