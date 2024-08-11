@@ -25,11 +25,14 @@
   font-weight: bold;
   text-align: center;
   aspect-ratio: 1 / 1;
-  cursor: pointer; /* Indicates that the item is clickable */
+}
+
+.grid-item.player {
+  cursor: pointer; /* Cursor changes only for player items */
 }
 
 .grid-item.toggled {
-  background-color: #ccc; /* Change to gray when toggled */
+  background-color: #ccc;
 }
 
 .player.north {
@@ -60,4 +63,40 @@
 
 .empty {
   grid-column: span 1;
+}
+
+.player-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.player-buttons button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.player-buttons button.active {
+  background-color: #4caf50; /* Green background when active */
+  color: white;
+}
+
+.player-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
+.status {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.toggled {
+  background-color: #d5f5e3;
 }

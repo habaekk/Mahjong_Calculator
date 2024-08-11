@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 import Modal from './components/Modal';
 import { useRecoilState } from 'recoil';
-import { scoreState } from './recoil/scoreState';
+import { playersState } from './recoil/playerState';
 
 function App() {
-  const [scores, setScores] = useRecoilState(scoreState); // Recoil 상태 사용
-  const [dealer, setDealer] = useState('east');
-  const [reaches, setReaches] = useState({ east: false, south: false, west: false, north: false });
+  const [players, setPlayers] = useRecoilState(playersState); // Recoil 상태 사용
   const [extensionCount, setExtensionCount] = useState(0);
   const [editMode, setEditMode] = useState(false);
 
@@ -20,7 +18,7 @@ function App() {
     empty1: false,
     empty2: false,
     empty3: false,
-    empty4: false
+    empty4: false,
   });
 
   const [selectedOrder, setSelectedOrder] = useState([]); // Array to track the order of selections
@@ -57,7 +55,7 @@ function App() {
             empty1: false,
             empty2: false,
             empty3: false,
-            empty4: false
+            empty4: false,
           });
 
           setSelectedOrder([]); // Reset the selection order
@@ -71,55 +69,68 @@ function App() {
     setIsModalOpen(false); // Close the modal
   };
 
+  const toggleOya = (id) => {
+    setPlayers((prevPlayers) =>
+      prevPlayers.map((player) => {
+        if (player.id === id) {
+          // Toggle the Oya state for the clicked player
+          return { ...player, oya: !player.oya };
+        } else {
+          // Ensure all other players have Oya turned off
+          return { ...player, oya: false };
+        }
+      })
+    );
+  };
+
+  const toggleReach = (id) => {
+    setPlayers((prevPlayers) =>
+      prevPlayers.map((player) =>
+        player.id === id ? { ...player, reach: !player.reach } : player
+      )
+    );
+  };
+
   return (
     <div className="App">
       <div className="grid-container">
-        <div
-          className={`grid-item player north ${toggled.north ? 'toggled' : ''}`}
-          onClick={() => handleToggle('north')}
-        >
-          North: {scores.north}
-        </div>
+        {players.map((player) => (
+          <div
+            key={player.id}
+            className={`grid-item player ${player.id} ${toggled[player.id] ? 'toggled' : ''}`}
+            onClick={() => handleToggle(player.id)}
+          >
+            {player.id.charAt(0).toUpperCase() + player.id.slice(1)}: {player.score}
+          </div>
+        ))}
         <div
           className={`grid-item extension-count ${toggled.extension ? 'toggled' : ''}`}
-          onClick={() => handleToggle('extension')}
         >
           Extensions: {extensionCount}
         </div>
-        <div
-          className={`grid-item player east ${toggled.east ? 'toggled' : ''}`}
-          onClick={() => handleToggle('east')}
-        >
-          East: {scores.east}
-        </div>
-        <div
-          className={`grid-item player south ${toggled.south ? 'toggled' : ''}`}
-          onClick={() => handleToggle('south')}
-        >
-          South: {scores.south}
-        </div>
-        <div
-          className={`grid-item player west ${toggled.west ? 'toggled' : ''}`}
-          onClick={() => handleToggle('west')}
-        >
-          West: {scores.west}
-        </div>
-        <div
-          className={`grid-item empty ${toggled.empty1 ? 'toggled' : ''}`}
-          onClick={() => handleToggle('empty1')}
-        ></div>
-        <div
-          className={`grid-item empty ${toggled.empty2 ? 'toggled' : ''}`}
-          onClick={() => handleToggle('empty2')}
-        ></div>
-        <div
-          className={`grid-item empty ${toggled.empty3 ? 'toggled' : ''}`}
-          onClick={() => handleToggle('empty3')}
-        ></div>
-        <div
-          className={`grid-item empty ${toggled.empty4 ? 'toggled' : ''}`}
-          onClick={() => handleToggle('empty4')}
-        ></div>
+        <div className="grid-item empty"></div> {/* empty1 */}
+        <div className="grid-item empty"></div> {/* empty2 */}
+        <div className="grid-item empty"></div> {/* empty3 */}
+        <div className="grid-item empty">
+          <div className="player-buttons">
+            {players.map((player) => (
+              <div key={player.id}>
+                <button
+                  className={player.oya ? 'active' : ''}
+                  onClick={() => toggleOya(player.id)}
+                >
+                  {player.id.charAt(0).toUpperCase() + player.id.slice(1)} 오야
+                </button>
+                <button
+                  className={player.reach ? 'active' : ''}
+                  onClick={() => toggleReach(player.id)}
+                >
+                  {player.id.charAt(0).toUpperCase() + player.id.slice(1)} 리치
+                </button>
+              </div>
+            ))}
+          </div>
+        </div> {/* empty4 */}
       </div>
 
       <Modal show={isModalOpen} onClose={handleCloseModal} />
