@@ -16,8 +16,10 @@
     padding: 20px;
     border-radius: 8px;
     position: relative; /* To position the close button inside */
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 95vw; /* Increase the max width to 95% of the viewport width */
+    max-height: 95vh; /* Increase the max height to 95% of the viewport height */
+    width: 80vw; /* Base width to ensure it fills more of the screen */
+    height: 80vh; /* Base height to ensure it fills more of the screen */
     overflow: auto; /* Handle content overflow */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow for better visibility */
   }

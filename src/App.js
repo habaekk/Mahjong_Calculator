@@ -23,54 +23,28 @@ function App() {
   });
 
   const [selectedOrder, setSelectedOrder] = useState([]); // Array to track the order of selections
-
-  const updateScore = (position, newScore) => {
-    setScores({ ...scores, [position]: newScore });
-  };
-
-  const toggleDealer = (newDealer) => {
-    setDealer(newDealer);
-  };
-
-  const toggleReach = (position) => {
-    setReaches({ ...reaches, [position]: !reaches[position] });
-  };
-
-  const handleExtensionCount = () => {
-    setExtensionCount(extensionCount + 1);
-  };
-
-  const handleDraw = () => {
-    // Logic for handling a draw
-    console.log('Draw triggered');
-  };
-
-  const toggleEditMode = () => {
-    setEditMode(!editMode);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal visibility
 
   const handleToggle = (position) => {
     const isAlreadyToggled = toggled[position];
     const newToggled = { ...toggled, [position]: !toggled[position] };
 
     if (isAlreadyToggled) {
-      // Handle the case where the same block is clicked twice (to toggle off)
       console.log(`Block ${position} was toggled off`);
       const newSelectedOrder = selectedOrder.filter((item) => item !== position); // Remove the block from the selection order
       setToggled(newToggled);
       setSelectedOrder(newSelectedOrder);
     } else {
-      // Handle the case where a new block is toggled on
       const newSelectedOrder = [...selectedOrder, position]; // Add the block to the selection order
       setToggled(newToggled);
       setSelectedOrder(newSelectedOrder);
 
       if (newSelectedOrder.length === 2) {
-        // If two blocks are toggled, delay the reset by 1 second
+        // If two blocks are toggled, delay the reset by 0.1 seconds
         setTimeout(() => {
-          const [firstBlock, secondBlock] = newSelectedOrder; // Get the first and second selected blocks
-          console.log('First selected block:', firstBlock); // Log the first selected block
-          console.log('Second selected block:', secondBlock); // Log the second selected block
+          const [firstBlock, secondBlock] = newSelectedOrder;
+          console.log('First selected block:', firstBlock);
+          console.log('Second selected block:', secondBlock);
 
           setToggled({
             north: false,
@@ -85,10 +59,14 @@ function App() {
           });
 
           setSelectedOrder([]); // Reset the selection order
-          handleDraw(); // Trigger the specific function after the delay
-        }, 1000);
+          setIsModalOpen(true); // Open the modal
+        }, 100);
       }
     }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
   };
 
   return (
@@ -141,6 +119,8 @@ function App() {
           onClick={() => handleToggle('empty4')}
         ></div>
       </div>
+
+      <Modal show={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 }
