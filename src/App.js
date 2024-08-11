@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import Modal from './components/Modal';
+import { useRecoilState } from 'recoil';
+import { scoreState } from './recoil/scoreState';
 
 function App() {
-  const initialScores = { east: 25000, south: 25000, west: 25000, north: 25000 };
-  const [scores, setScores] = useState(initialScores);
+  const [scores, setScores] = useRecoilState(scoreState); // Recoil 상태 사용
   const [dealer, setDealer] = useState('east');
   const [reaches, setReaches] = useState({ east: false, south: false, west: false, north: false });
   const [extensionCount, setExtensionCount] = useState(0);
