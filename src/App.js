@@ -39,6 +39,7 @@ function App() {
 
   const handleDraw = () => {
     // Logic for handling a draw
+    console.log('Draw triggered');
   };
 
   const toggleEditMode = () => {
@@ -46,7 +47,29 @@ function App() {
   };
 
   const handleToggle = (position) => {
-    setToggled({ ...toggled, [position]: !toggled[position] });
+    const newToggled = { ...toggled, [position]: !toggled[position] };
+    const toggledCount = Object.values(newToggled).filter((val) => val).length;
+
+    if (toggledCount === 2) {
+      setToggled(newToggled);
+      // Delay the reset by 1 second (1000ms)
+      setTimeout(() => {
+        setToggled({
+          north: false,
+          east: false,
+          south: false,
+          west: false,
+          extension: false,
+          empty1: false,
+          empty2: false,
+          empty3: false,
+          empty4: false
+        });
+        handleDraw(); // Trigger the specific function after the delay
+      }, 100);
+    } else {
+      setToggled(newToggled);
+    }
   };
 
   return (
