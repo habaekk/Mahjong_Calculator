@@ -32,6 +32,7 @@ function App() {
     if (isAlreadyToggled) {
       console.log(`Block ${position} was toggled off`);
       const newSelectedOrder = selectedOrder.filter((item) => item !== position); // Remove the block from the selection order
+      setIsModalOpen(true); // Open the modal
       setToggled(newToggled);
       setSelectedOrder(newSelectedOrder);
     } else {
