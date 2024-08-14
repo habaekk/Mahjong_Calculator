@@ -29,16 +29,16 @@ const Modal = ({ show, onClose }) => {
 
       if ( gameState.isRon ) {
         calculateRon({
-          fan: gameState.fan,
-          fu: gameState.fu,
+          fan: selectedCell.fan,
+          fu: selectedCell.fu,
           winnerId: gameState.winnerID,
           loserId: gameState.loserID,
           oya: gameState.oya,
         });
       } else {
         calculateTsu({
-          fan: gameState.fan,
-          fu: gameState.fu,
+          fan: selectedCell.fan,
+          fu: selectedCell.fu,
           winnerId: gameState.winnerID,
           oya: gameState.oya,
         });
