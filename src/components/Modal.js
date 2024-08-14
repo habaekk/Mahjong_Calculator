@@ -3,10 +3,14 @@ import './Modal.css';
 import GridComponent from './ScoreGrid'; // Import the 12x14 grid component
 import { useRecoilState } from 'recoil';
 import { gameStateAtom } from '../recoil/gameState'; // 게임 상태 atom을 import
+import useCalculateRon from '../useCalculateRon';
+import useCalculateTsu from '../useCalculateTsu';
 
 const Modal = ({ show, onClose }) => {
   const [selectedCell, setSelectedCell] = useState(null);
   const [gameState, setGameState] = useRecoilState(gameStateAtom); // Recoil 상태 사용
+  const calculateRon = useCalculateRon();
+  const calculateTsu = useCalculateTsu();
 
   if (!show) {
     return null;
@@ -22,6 +26,23 @@ const Modal = ({ show, onClose }) => {
         fan: selectedCell.fan,
         fu: selectedCell.fu,
       }));
+
+      if ( gameState.isRon ) {
+        calculateRon({
+          fan: gameState.fan,
+          fu: gameState.fu,
+          winnerId: gameState.winnerID,
+          loserId: gameState.loserID,
+          oya: gameState.oya,
+        });
+      } else {
+        calculateTsu({
+          fan: gameState.fan,
+          fu: gameState.fu,
+          winnerId: gameState.winnerID,
+          oya: gameState.oya,
+        });
+      }
 
       // 모달 닫기
       onClose();
