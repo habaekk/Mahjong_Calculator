@@ -36,6 +36,7 @@ function App() {
 
     if (isAlreadyToggled) {
       console.log(`Block ${position} was toggled off`);
+      setTsumoPlayerID(position)
       const newSelectedOrder = selectedOrder.filter((item) => item !== position);
       setIsModalOpen(true);
       setToggled(newToggled);
@@ -50,6 +51,7 @@ function App() {
           const [firstBlock, secondBlock] = newSelectedOrder;
           console.log('First selected block:', firstBlock);
           console.log('Second selected block:', secondBlock);
+          setRonPlayerID(firstBlock, secondBlock)
 
           setToggled({
             north: false,
@@ -73,6 +75,21 @@ function App() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const setTsumoPlayerID = (id) => {
+    setGameState((prevState) => ({
+      ...prevState,
+      winnerID: id,
+    }))
+  }
+
+  const setRonPlayerID = (winner, loser) => {
+    setGameState((prevState) => ({
+      ...prevState,
+      winnerID: winner,
+      loserID: loser,
+    }))
+  }
 
   const toggleOya = (id) => {
     // 먼저 Recoil 상태 업데이트
