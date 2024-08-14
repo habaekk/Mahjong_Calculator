@@ -14,11 +14,15 @@ const useCalculateRon = () => {
     } else {
       fu = Math.floor(fu / 10);
     }
+    console.log("Winner ID:", winnerId);
+    console.log("Loser ID:", loserId);
+    console.log("Oya:", oya);
+    console.log("Score:", oya);
+
 
     // 오야 여부에 따른 점수 결정
     if (oya) {
-      ron_score = ron_oya[fan][fu];
-      
+      ron_score = ron_oya[fan][fu];      
     } else {
       ron_score = ron_ja[fan][fu];
     }  
