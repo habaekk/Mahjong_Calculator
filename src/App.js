@@ -3,16 +3,17 @@ import './App.css';
 import Modal from './components/Modal';
 import { useRecoilState } from 'recoil';
 import { playersState } from './recoil/playerState';
-import useCalculateRon from './useCalculateRon'; // 사용자가 정의한 훅을 import
+import { gameStateAtom } from './recoil/gameState';
+import useCalculateRon from './useCalculateRon';
 import useCalculateTsu from './useCalculateTsu';
 
 function App() {
-  const [players, setPlayers] = useRecoilState(playersState); // Recoil 상태 사용
+  const [players, setPlayers] = useRecoilState(playersState);
+  const [gameState, setGameState] = useRecoilState(gameStateAtom);
   const [extensionCount, setExtensionCount] = useState(0);
   const [editMode, setEditMode] = useState(false);
-  const calculateRon = useCalculateRon(); // 훅을 통해 점수 계산 함수를 가져옴
+  const calculateRon = useCalculateRon();
   const calculateTsu = useCalculateTsu();
-
 
   const [toggled, setToggled] = useState({
     north: false,
@@ -26,8 +27,8 @@ function App() {
     empty4: false,
   });
 
-  const [selectedOrder, setSelectedOrder] = useState([]); // Array to track the order of selections
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal visibility
+  const [selectedOrder, setSelectedOrder] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggle = (position) => {
     const isAlreadyToggled = toggled[position];
@@ -35,17 +36,16 @@ function App() {
 
     if (isAlreadyToggled) {
       console.log(`Block ${position} was toggled off`);
-      const newSelectedOrder = selectedOrder.filter((item) => item !== position); // Remove the block from the selection order
-      setIsModalOpen(true); // Open the modal
+      const newSelectedOrder = selectedOrder.filter((item) => item !== position);
+      setIsModalOpen(true);
       setToggled(newToggled);
       setSelectedOrder(newSelectedOrder);
     } else {
-      const newSelectedOrder = [...selectedOrder, position]; // Add the block to the selection order
+      const newSelectedOrder = [...selectedOrder, position];
       setToggled(newToggled);
       setSelectedOrder(newSelectedOrder);
 
       if (newSelectedOrder.length === 2) {
-        // If two blocks are toggled, delay the reset by 0.1 seconds
         setTimeout(() => {
           const [firstBlock, secondBlock] = newSelectedOrder;
           console.log('First selected block:', firstBlock);
@@ -63,28 +63,30 @@ function App() {
             empty4: false,
           });
 
-          setSelectedOrder([]); // Reset the selection order
-          setIsModalOpen(true); // Open the modal
+          setSelectedOrder([]);
+          setIsModalOpen(true);
         }, 100);
       }
     }
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
 
   const toggleOya = (id) => {
+    // 먼저 Recoil 상태 업데이트
+    setGameState((prevState) => ({
+      ...prevState,
+      oya: id, // 새로운 오야로 설정
+    }));
+
+    // 이후 Players 상태 업데이트
     setPlayers((prevPlayers) =>
-      prevPlayers.map((player) => {
-        if (player.id === id) {
-          // Toggle the Oya state for the clicked player
-          return { ...player, oya: !player.oya };
-        } else {
-          // Ensure all other players have Oya turned off
-          return { ...player, oya: false };
-        }
-      })
+      prevPlayers.map((player) => ({
+        ...player,
+        oya: player.id === id, // 선택된 플레이어만 오야로 설정
+      }))
     );
   };
 
@@ -97,13 +99,12 @@ function App() {
   };
 
   const handleRon = () => {
-    // 예시로 East가 South를 이긴 상황을 가정
     calculateRon({
       fan: 3,
       fu: 30,
       winnerId: 'east',
       loserId: 'south',
-      oya: true,
+      oya: gameState.oya === 'east',
     });
   };
 
@@ -112,9 +113,9 @@ function App() {
       fan: 3,
       fu: 30,
       winnerId: 'east',
-      oya: false,
+      oya: gameState.oya === 'east',
     });
-  }
+  };
 
   return (
     <div className="App">
