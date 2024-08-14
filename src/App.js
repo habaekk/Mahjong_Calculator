@@ -3,12 +3,13 @@ import './App.css';
 import Modal from './components/Modal';
 import { useRecoilState } from 'recoil';
 import { playersState } from './recoil/playerState';
-import Ron from './Ron'; // Ron 함수 import
+import useCalculateRon from './useCalculateRon'; // 사용자가 정의한 훅을 import
 
 function App() {
   const [players, setPlayers] = useRecoilState(playersState); // Recoil 상태 사용
   const [extensionCount, setExtensionCount] = useState(0);
   const [editMode, setEditMode] = useState(false);
+  const calculateRon = useCalculateRon(); // 훅을 통해 점수 계산 함수를 가져옴
 
   const [toggled, setToggled] = useState({
     north: false,
@@ -94,11 +95,13 @@ function App() {
 
   const handleRon = () => {
     // 예시로 East가 South를 이긴 상황을 가정
-    const winner = 25000
-    const loser = 25000
-
-    const result = Ron(3, 30, winner, loser);
-    console.log('Ron 결과:', result);
+    calculateRon({
+      fan: 3,
+      fu: 30,
+      winnerId: 'east',
+      loserId: 'south',
+      oya: true,
+    });
   };
 
   return (
