@@ -37,6 +37,8 @@ function App() {
     if (isAlreadyToggled) {
       console.log(`Block ${position} was toggled off`);
       setTsumoPlayerID(position)
+      setRonState(false)
+
       const newSelectedOrder = selectedOrder.filter((item) => item !== position);
       setIsModalOpen(true);
       setToggled(newToggled);
@@ -52,6 +54,7 @@ function App() {
           console.log('First selected block:', firstBlock);
           console.log('Second selected block:', secondBlock);
           setRonPlayerID(firstBlock, secondBlock)
+          setRonState(true)
 
           setToggled({
             north: false,
@@ -88,6 +91,13 @@ function App() {
       ...prevState,
       winnerID: winner,
       loserID: loser,
+    }))
+  }
+
+  const setRonState = (ron) => {
+    setGameState((prevState) => ({
+      ...prevState,
+      isRon: ron,
     }))
   }
 

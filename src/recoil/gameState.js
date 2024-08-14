@@ -9,5 +9,6 @@ export const gameStateAtom = atom({
     oya: null,
     winnerID: null,
     loserID: null,
+    isRon: null,
   },
 });
