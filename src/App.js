@@ -4,12 +4,15 @@ import Modal from './components/Modal';
 import { useRecoilState } from 'recoil';
 import { playersState } from './recoil/playerState';
 import useCalculateRon from './useCalculateRon'; // 사용자가 정의한 훅을 import
+import useCalculateTsu from './useCalculateTsu';
 
 function App() {
   const [players, setPlayers] = useRecoilState(playersState); // Recoil 상태 사용
   const [extensionCount, setExtensionCount] = useState(0);
   const [editMode, setEditMode] = useState(false);
   const calculateRon = useCalculateRon(); // 훅을 통해 점수 계산 함수를 가져옴
+  const calculateTsu = useCalculateTsu();
+
 
   const [toggled, setToggled] = useState({
     north: false,
@@ -104,6 +107,15 @@ function App() {
     });
   };
 
+  const handleTsu = () => {
+    calculateTsu({
+      fan: 3,
+      fu: 30,
+      winnerId: 'east',
+      oya: false,
+    });
+  }
+
   return (
     <div className="App">
       <div className="grid-container">
@@ -128,6 +140,7 @@ function App() {
         </div>
         <div className="grid-item empty">
           <button onClick={handleRon}>론 실행</button>
+          <button onClick={handleTsu}>쯔모 실행</button>
         </div> {/* empty1 */}
         <div className="grid-item empty"></div> {/* empty2 */}
         <div className="grid-item empty"></div> {/* empty3 */}
