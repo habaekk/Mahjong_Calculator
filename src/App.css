@@ -52,6 +52,11 @@
   margin-top: 5px;
 }
 
+.status.tenpai {
+  color: #FFA500;
+  margin-top: 5px;
+}
+
 .player.north {
   grid-column: 2 / 3;
   grid-row: 1 / 2;

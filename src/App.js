@@ -123,6 +123,10 @@ function App() {
     );
   };
 
+  const toggleDraw = () => {
+    console.log('Draw.')
+  };
+
   return (
     <div className="App">
       <div className="grid-container">
@@ -156,12 +160,16 @@ function App() {
                     className={player.tenpai ? 'active' : ''}
                     onClick={() => toggleTenpai(player.id)}
                   >
-                    {player.id.charAt(0).toUpperCase() + player.id.slice(1)}
+                    {player.id.charAt(0).toUpperCase() + player.id.slice(1)} 텐파이
                   </button>
                 
                 </div>
               ))}
-            </div>
+          </div>
+          <div className='draw-button'>
+            <button onClick={() => toggleDraw()}>유국</button>
+          </div>
+          
         </div> {/* empty3 */}
 
 
