@@ -4,16 +4,10 @@ import Modal from './components/Modal';
 import { useRecoilState } from 'recoil';
 import { playersState } from './recoil/playerState';
 import { gameStateAtom } from './recoil/gameState';
-import useCalculateRon from './useCalculateRon';
-import useCalculateTsu from './useCalculateTsu';
 
 function App() {
   const [players, setPlayers] = useRecoilState(playersState);
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
-  const [extensionCount, setExtensionCount] = useState(0);
-  const [editMode, setEditMode] = useState(false);
-  const calculateRon = useCalculateRon();
-  const calculateTsu = useCalculateTsu();
 
   const [toggled, setToggled] = useState({
     north: false,
@@ -125,24 +119,7 @@ function App() {
     );
   };
 
-  const handleRon = () => {
-    calculateRon({
-      fan: 3,
-      fu: 30,
-      winnerId: 'east',
-      loserId: 'south',
-      oya: gameState.oya === 'east',
-    });
-  };
 
-  const handleTsu = () => {
-    calculateTsu({
-      fan: 3,
-      fu: 30,
-      winnerId: 'east',
-      oya: gameState.oya === 'east',
-    });
-  };
 
   return (
     <div className="App">
@@ -160,16 +137,8 @@ function App() {
             </div>
           </div>
         ))}
-        <div
-          className={`grid-item extension-count ${toggled.extension ? 'toggled' : ''}`}
-          onClick={() => handleToggle('extension')}
-        >
-          Extensions: {extensionCount}
-        </div>
-        <div className="grid-item empty">
-          <button onClick={handleRon}>론 실행</button>
-          <button onClick={handleTsu}>쯔모 실행</button>
-        </div> {/* empty1 */}
+        <div className={`grid-item extension-count`}></div>
+        <div className="grid-item empty"></div> {/* empty1 */}
         <div className="grid-item empty"></div> {/* empty2 */}
         <div className="grid-item empty"></div> {/* empty3 */}
         <div className="grid-item empty">
