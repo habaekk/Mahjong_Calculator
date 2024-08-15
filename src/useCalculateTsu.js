@@ -1,16 +1,31 @@
 import { useRecoilState } from 'recoil';
 import { playersState } from './recoil/playerState';
+import { gameStateAtom } from './recoil/gameState';
 import tsumo_oya from './score_data/tsumo_oya';
 import tsumo_ja_oya from './score_data/tsumo_ja_oya'
 import tsumo_ja_ja from './score_data/tsumo_ja_ja';
 
 const useCalculateTsu = () => {
   const [players, setPlayers] = useRecoilState(playersState);
+  const [gameState, setGameState] = useRecoilState(gameStateAtom);
 
   const calculateTsu = ({ fan, fu, winnerId, oya }) => {
     let tsu_score_oya;
     let tsu_score_ja_oya;
     let tsu_score_ja_ja;
+
+    // 연승 관리
+    if (winnerId == oya) {
+      setGameState((prevState) => ({
+        ...prevState,
+        wins: gameState.wins + 1,
+      }))
+    } else {
+      setGameState((prevState) => ({
+        ...prevState,
+        wins: 0,
+      }))
+    }
 
 
     if (fu === 20) {

@@ -1,10 +1,12 @@
 import { useRecoilState } from 'recoil';
 import { playersState } from './recoil/playerState';
+import { gameStateAtom } from './recoil/gameState';
 import ron_oya from './score_data/ron_oya';
 import ron_ja from './score_data/ron_ja';
 
 const useCalculateRon = () => {
   const [players, setPlayers] = useRecoilState(playersState);
+  const [gameState, setGameState] = useRecoilState(gameStateAtom);
 
   const calculateRon = ({ fan, fu, winnerId, loserId, oya }) => {
     let ron_score;
@@ -19,10 +21,23 @@ const useCalculateRon = () => {
     console.log("Oya:", oya);
     console.log("Score:", oya);
 
+    // 연승 관리
+    if (winnerId == oya) {
+      setGameState((prevState) => ({
+        ...prevState,
+        wins: gameState.wins + 1,
+      }))
+    } else {
+      setGameState((prevState) => ({
+        ...prevState,
+        wins: 0,
+      }))
+    }
+
 
     // 오야 여부에 따른 점수 결정
     if (winnerId == oya || loserId == oya) {
-      ron_score = ron_oya[fan][fu];      
+      ron_score = ron_oya[fan][fu];
     } else {
       ron_score = ron_ja[fan][fu];
     }  

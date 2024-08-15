@@ -14,11 +14,6 @@ function App() {
     east: false,
     south: false,
     west: false,
-    extension: false,
-    empty1: false,
-    empty2: false,
-    empty3: false,
-    empty4: false,
   });
 
   const [selectedOrder, setSelectedOrder] = useState([]);
@@ -55,11 +50,6 @@ function App() {
             east: false,
             south: false,
             west: false,
-            extension: false,
-            empty1: false,
-            empty2: false,
-            empty3: false,
-            empty4: false,
           });
 
           setSelectedOrder([]);
@@ -119,8 +109,6 @@ function App() {
     );
   };
 
-
-
   return (
     <div className="App">
       <div className="grid-container">
@@ -140,7 +128,11 @@ function App() {
         <div className={`grid-item extension-count`}></div>
         <div className="grid-item empty"></div> {/* empty1 */}
         <div className="grid-item empty"></div> {/* empty2 */}
-        <div className="grid-item empty"></div> {/* empty3 */}
+        <div className="grid-item empty">
+          <div className="wins-count">
+            연승 수: {gameState.wins}
+          </div>
+        </div> {/* empty3 */}
         <div className="grid-item empty">
           <div className="player-buttons">
             {players.map((player) => (
