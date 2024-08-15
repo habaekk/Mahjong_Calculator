@@ -113,3 +113,11 @@
 .toggled {
   background-color: #d5f5e3;
 }
+
+.large-button {
+  width: 100px;    /* 버튼의 너비 */
+  height: 50px;    /* 버튼의 높이 */
+  font-size: 20px; /* 버튼 텍스트 크기 */
+  padding: 10px;   /* 버튼 내부 여백 */
+  border-radius: 8px; /* 버튼의 모서리를 둥글게 */
+}

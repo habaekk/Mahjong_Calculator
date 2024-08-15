@@ -19,6 +19,13 @@ function App() {
   const [selectedOrder, setSelectedOrder] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleDrawGame = () => {
+    console.log("유국 처리");
+    // 여기에 유국 처리 로직을 추가하세요.
+
+  };
+  
+
   const handleToggle = (position) => {
     const isAlreadyToggled = toggled[position];
     const newToggled = { ...toggled, [position]: !toggled[position] };
@@ -132,7 +139,11 @@ function App() {
           </div>    
         </div> {/* empty1 */}
         <div className="grid-item empty"></div> {/* empty2 */}
-        <div className="grid-item empty"></div> {/* empty3 */}
+        <div className="grid-item empty">
+          <button onClick={handleDrawGame} className="large-button">유국</button>
+        </div> {/* empty3 */}
+
+
         <div className="grid-item empty">
           <div className="player-buttons">
             {players.map((player) => (
