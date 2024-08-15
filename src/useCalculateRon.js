@@ -21,7 +21,7 @@ const useCalculateRon = () => {
 
 
     // 오야 여부에 따른 점수 결정
-    if (oya) {
+    if (winnerId == oya || loserId == oya) {
       ron_score = ron_oya[fan][fu];      
     } else {
       ron_score = ron_ja[fan][fu];

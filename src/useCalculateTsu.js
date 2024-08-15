@@ -20,18 +20,20 @@ const useCalculateTsu = () => {
     }
 
     // 오야 여부에 따른 점수 결정
-    if (oya) {
+    if (winnerId == oya) {
         tsu_score_oya = tsumo_oya[fan][fu];
       
     } else {
         tsu_score_ja_oya = tsumo_ja_oya[fan][fu];
         tsu_score_ja_ja = tsumo_ja_ja[fan][fu];
+        
     }  
+    console.log(tsu_score_ja_oya)
 
     // 점수 반영: 승자는 점수를 얻고, 패자는 점수를 잃음
     setPlayers(prevPlayers =>
       prevPlayers.map(player => {
-        if (oya) {
+        if (winnerId == oya) {
             if (player.id === winnerId) {
                 return { ...player, score: player.score + tsu_score_oya * 3};
             } else {
@@ -40,7 +42,7 @@ const useCalculateTsu = () => {
         } else {
             if (player.id === winnerId) {
                 return { ...player, score: player.score + tsu_score_ja_oya + tsu_score_ja_ja*2 }
-            } else if (player.oya === true) {
+            } else if (player.id == oya) {
                 return { ...player, score: player.score - tsu_score_ja_oya}
             } else {
                 return { ...player, score: player.score - tsu_score_ja_ja}
