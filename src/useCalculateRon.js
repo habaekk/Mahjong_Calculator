@@ -46,9 +46,9 @@ const useCalculateRon = () => {
     setPlayers(prevPlayers =>
       prevPlayers.map(player => {
         if (player.id === winnerId) {
-          return { ...player, score: player.score + ron_score };
+          return { ...player, score: player.score + ron_score + gameState.wins * 300 };
         } else if (player.id === loserId) {
-          return { ...player, score: player.score - ron_score };
+          return { ...player, score: player.score - ron_score - gameState.wins * 300 };
         } else {
           return player;
         }

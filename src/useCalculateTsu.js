@@ -50,9 +50,9 @@ const useCalculateTsu = () => {
       prevPlayers.map(player => {
         if (winnerId == oya) {
             if (player.id === winnerId) {
-                return { ...player, score: player.score + tsu_score_oya * 3};
+                return { ...player, score: player.score + tsu_score_oya * 3 + gameState.wins * 300};
             } else {
-                return { ...player, score: player.score - tsu_score_oya };
+                return { ...player, score: player.score - tsu_score_oya - gameState.wins * 100 };
             }
         } else {
             if (player.id === winnerId) {
