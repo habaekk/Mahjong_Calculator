@@ -72,12 +72,6 @@
   grid-row: 2 / 3;
 }
 
-.extension-count {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  background-color: #f7f7f7;
-}
-
 .empty {
   grid-column: span 1;
 }

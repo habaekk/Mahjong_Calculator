@@ -92,6 +92,13 @@ function App() {
     }))
   }
 
+  const toggleTenpai = (id) => {
+    setPlayers((prevPlayers) =>
+      prevPlayers.map((player) =>
+        player.id === id ? { ...player, tenpai: !player.tenpai } : player
+      ))
+  }
+
   const toggleOya = (id) => {
     // 먼저 Recoil 상태 업데이트
     setGameState((prevState) => ({
@@ -129,6 +136,7 @@ function App() {
               <div>{player.id.charAt(0).toUpperCase() + player.id.slice(1)}: {player.score}</div>
               {player.oya && <div className="status oya">오야</div>}
               {player.reach && <div className="status reach">리치!</div>}
+              {player.tenpai && <div className="status tenpai">텐파이</div>}
             </div>
           </div>
         ))}
@@ -140,7 +148,20 @@ function App() {
         </div> {/* empty1 */}
         <div className="grid-item empty"></div> {/* empty2 */}
         <div className="grid-item empty">
-          <button onClick={handleDrawGame} className="large-button">유국</button>
+          {/* <button onClick={handleDrawGame} className="large-button">유국</button> */}
+          <div className="player-buttons">
+            {players.map((player) => (
+                <div key={player.id}>
+                  <button
+                    className={player.tenpai ? 'active' : ''}
+                    onClick={() => toggleTenpai(player.id)}
+                  >
+                    {player.id.charAt(0).toUpperCase() + player.id.slice(1)}
+                  </button>
+                
+                </div>
+              ))}
+            </div>
         </div> {/* empty3 */}
 
 
