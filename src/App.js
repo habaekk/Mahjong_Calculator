@@ -145,11 +145,18 @@ function App() {
 
   const toggleReach = (id) => {
     setPlayers((prevPlayers) =>
-      prevPlayers.map((player) =>
-        player.id === id ? { ...player, reach: !player.reach } : player
-      )
+      prevPlayers.map((player) => {
+        if (player.id === id) {
+          // 리치를 켜는 경우 1000점 차감, 끄는 경우 1000점 추가
+          const newReachState = !player.reach;
+          const newScore = newReachState ? player.score - 1000 : player.score + 1000;
+          return { ...player, reach: newReachState, score: newScore };
+        }
+        return player; // id가 일치하지 않으면 기존 player 반환
+      })
     );
   };
+  
 
   return (
     <div className="App">
