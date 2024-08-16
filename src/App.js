@@ -4,10 +4,12 @@ import Modal from './components/Modal';
 import { useRecoilState } from 'recoil';
 import { playersState } from './recoil/playerState';
 import { gameStateAtom } from './recoil/gameState';
+import { tenpaiCountState } from './tenpaiCountState';
 
 function App() {
   const [players, setPlayers] = useRecoilState(playersState);
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
+  const tenpaiCount = useRecoilValue(tenpaiCountState);
 
   const [toggled, setToggled] = useState({
     north: false,
@@ -19,9 +21,20 @@ function App() {
   const [selectedOrder, setSelectedOrder] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleDrawGame = () => {
+  const handleDraw = () => {
     console.log("유국 처리");
     // 여기에 유국 처리 로직을 추가하세요.
+
+    setPlayers(prevPlayers =>
+      prevPlayers.map(player => {
+        if (player.tenpai) {
+          return { ...player, score: player.score + ron_score + gameState.wins * 300 };
+        } else {
+          return player;
+        }
+      })
+    );
+
 
   };
   
@@ -123,10 +136,6 @@ function App() {
     );
   };
 
-  const toggleDraw = () => {
-    console.log('Draw.')
-  };
-
   return (
     <div className="App">
       <div className="grid-container">
@@ -167,7 +176,7 @@ function App() {
               ))}
           </div>
           <div>
-            <button className='draw-button' onClick={() => toggleDraw()}>유국 실행</button>
+            <button className='draw-button' onClick={() => handleDraw()}>유국 실행</button>
           </div>
           
         </div> {/* empty3 */}
