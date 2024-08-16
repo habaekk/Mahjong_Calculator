@@ -166,8 +166,8 @@ function App() {
                 </div>
               ))}
           </div>
-          <div className='draw-button'>
-            <button onClick={() => toggleDraw()}>유국</button>
+          <div>
+            <button className='draw-button' onClick={() => toggleDraw()}>유국 실행</button>
           </div>
           
         </div> {/* empty3 */}

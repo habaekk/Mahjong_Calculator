@@ -53,7 +53,7 @@
 }
 
 .status.tenpai {
-  color: #FFA500;
+  color: #fd9516;
   margin-top: 5px;
 }
 
@@ -119,4 +119,14 @@
   font-size: 20px; /* 버튼 텍스트 크기 */
   padding: 10px;   /* 버튼 내부 여백 */
   border-radius: 8px; /* 버튼의 모서리를 둥글게 */
+}
+
+.draw-button {
+  margin: 5px;
+  padding: 8px 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  transition: background-color 0.1s;
 }
