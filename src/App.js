@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import Modal from './components/Modal';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue  } from 'recoil';
 import { playersState } from './recoil/playerState';
 import { gameStateAtom } from './recoil/gameState';
-import { tenpaiCountState } from './tenpaiCountState';
+import { tenpaiCountState } from './recoil/tenpaiCountState ';
 
 function App() {
   const [players, setPlayers] = useRecoilState(playersState);
@@ -24,13 +24,28 @@ function App() {
   const handleDraw = () => {
     console.log("유국 처리");
     // 여기에 유국 처리 로직을 추가하세요.
+    let tenpaiScore_get
+    let tenpaiScore_lose
+    if (tenpaiCount === 1 ) {
+      tenpaiScore_get = 3000
+      tenpaiScore_lose = 1000
+    } else if (tenpaiCount === 2 ) {
+      tenpaiScore_get = 1500
+      tenpaiScore_lose = 1500
+    } else if (tenpaiCount === 3) {
+      tenpaiScore_get = 1000
+      tenpaiScore_lose = 3000
+    } else {
+      tenpaiScore_get = 0
+      tenpaiScore_lose = 0
+    }
 
     setPlayers(prevPlayers =>
       prevPlayers.map(player => {
         if (player.tenpai) {
-          return { ...player, score: player.score + ron_score + gameState.wins * 300 };
+          return { ...player, score: player.score + tenpaiScore_get, tenpai: false };
         } else {
-          return player;
+          return { ...player, score: player.score - tenpaiScore_lose};
         }
       })
     );
@@ -210,3 +225,6 @@ function App() {
 }
 
 export default App;
+
+// 유국 시 연승 로직
+// 동 자동 김

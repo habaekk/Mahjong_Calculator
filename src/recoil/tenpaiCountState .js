@@ -1,5 +1,5 @@
 import { selector } from 'recoil';
-import { playersState } from './playersState'; // playersState가 정의된 파일 경로
+import { playersState } from './playerState'; // playersState가 정의된 파일 경로
 
 export const tenpaiCountState = selector({
   key: 'tenpaiCountState', // 고유한 key
