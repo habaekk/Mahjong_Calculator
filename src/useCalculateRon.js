@@ -54,6 +54,14 @@ const useCalculateRon = () => {
         }
       })
     );
+
+    // reset reach bong
+    setPlayers((prevPlayers) =>
+      prevPlayers.map((player) => ({
+        ...player,
+        reach: false,
+      }))
+    );
   };
 
   return calculateRon;

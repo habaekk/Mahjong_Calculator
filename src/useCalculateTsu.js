@@ -65,6 +65,14 @@ const useCalculateTsu = () => {
         }
       })
     );
+
+    // reset reach bong
+    setPlayers((prevPlayers) =>
+      prevPlayers.map((player) => ({
+        ...player,
+        reach: false,
+      }))
+    );
   };
 
   return calculateTsu;
