@@ -1,12 +1,16 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { playersState } from './recoil/playerState';
 import { gameStateAtom } from './recoil/gameState';
 import ron_oya from './score_data/ron_oya';
 import ron_ja from './score_data/ron_ja';
+import { reachCountState } from './recoil/reachCountState';
+
 
 const useCalculateRon = () => {
   const [players, setPlayers] = useRecoilState(playersState);
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
+  const reachCount = useRecoilValue(reachCountState);
+
 
   const calculateRon = ({ fan, fu, winnerId, loserId, oya }) => {
     let ron_score;
@@ -46,7 +50,7 @@ const useCalculateRon = () => {
     setPlayers(prevPlayers =>
       prevPlayers.map(player => {
         if (player.id === winnerId) {
-          return { ...player, score: player.score + ron_score + gameState.wins * 300 };
+          return { ...player, score: player.score + ron_score + gameState.wins * 300 + reachCount * 1000 };
         } else if (player.id === loserId) {
           return { ...player, score: player.score - ron_score - gameState.wins * 300 };
         } else {

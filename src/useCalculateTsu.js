@@ -1,13 +1,17 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { playersState } from './recoil/playerState';
 import { gameStateAtom } from './recoil/gameState';
 import tsumo_oya from './score_data/tsumo_oya';
 import tsumo_ja_oya from './score_data/tsumo_ja_oya'
 import tsumo_ja_ja from './score_data/tsumo_ja_ja';
+import { reachCountState } from './recoil/reachCountState';
+
 
 const useCalculateTsu = () => {
   const [players, setPlayers] = useRecoilState(playersState);
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
+  const reachCount = useRecoilValue(reachCountState);
+
 
   const calculateTsu = ({ fan, fu, winnerId, oya }) => {
     let tsu_score_oya;
@@ -50,13 +54,13 @@ const useCalculateTsu = () => {
       prevPlayers.map(player => {
         if (winnerId == oya) {
             if (player.id === winnerId) {
-                return { ...player, score: player.score + tsu_score_oya * 3 + gameState.wins * 300};
+                return { ...player, score: player.score + tsu_score_oya * 3 + gameState.wins * 300 + reachCount * 1000};
             } else {
                 return { ...player, score: player.score - tsu_score_oya - gameState.wins * 100 };
             }
         } else {
             if (player.id === winnerId) {
-                return { ...player, score: player.score + tsu_score_ja_oya + tsu_score_ja_ja*2 }
+                return { ...player, score: player.score + tsu_score_ja_oya + tsu_score_ja_ja*2 + reachCount * 1000 }
             } else if (player.id == oya) {
                 return { ...player, score: player.score - tsu_score_ja_oya}
             } else {
