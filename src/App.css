@@ -114,11 +114,18 @@
 }
 
 .large-button {
-  width: 100px;    /* 버튼의 너비 */
+  width: 150px;    /* 버튼의 너비 */
   height: 50px;    /* 버튼의 높이 */
-  font-size: 20px; /* 버튼 텍스트 크기 */
-  padding: 10px;   /* 버튼 내부 여백 */
+  font-size: 18px; /* 버튼 텍스트 크기 */
   border-radius: 8px; /* 버튼의 모서리를 둥글게 */
+
+  margin: 5px;
+  padding: 8px 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  transition: background-color 0.1s;
 }
 
 .draw-button {
@@ -129,4 +136,32 @@
   border-radius: 4px;
   background-color: #f0f0f0;
   transition: background-color 0.1s;
+}
+
+input[type="number"] {
+  font-size: 24px;
+  padding: 10px;
+  width: 100px;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Add focus styling */
+input[type="number"]:focus {
+  outline: none;
+  border-color: #1890ff;
+  box-shadow: 0 0 10px rgba(24, 144, 255, 0.1);
 }

@@ -11,7 +11,6 @@ const useCalculateRon = () => {
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
   const reachCount = useRecoilValue(reachCountState);
 
-
   const calculateRon = ({ fan, fu, winnerId, loserId, oya }) => {
     let ron_score;
 
