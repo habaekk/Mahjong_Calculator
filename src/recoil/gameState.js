@@ -6,7 +6,7 @@ export const gameStateAtom = atom({
   default: {
     fan: 0,
     fu: 0,
-    oya: null,
+    oya: 'east',
     winnerID: null,
     loserID: null,
     isRon: null,
