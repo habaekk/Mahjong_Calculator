@@ -184,6 +184,9 @@ function App() {
     setIsEditMode(!isEditMode); // 수정 모드 토글
   };
 
+  // 점수 총합 계산
+  const totalScore = players.reduce((acc, player) => acc + player.score, 0);
+
   return (
     <div className="App">
       <div className="grid-container">
@@ -219,7 +222,10 @@ function App() {
         <div className="grid-item empty">
           <div className="wins-count">연승 수: {gameState.wins}</div>
         </div>
-        <div className="grid-item empty"></div>
+        <div className="grid-item empty">
+          {/* 플레이어들의 점수 총합 표시 */}
+          <div className="total-score">점수 합계: {totalScore}</div>
+        </div>
         <div className="grid-item empty">
           <div className="player-buttons">
             {players.map((player) => (
