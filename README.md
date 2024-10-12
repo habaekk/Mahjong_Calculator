@@ -123,7 +123,7 @@ mahjong-cal/
 
 ## 📋 Additional Information
 
--   This project is built on React and uses Recoil for state management.
+-   This project is built on **React** and uses **Recoil** for state management.
 -   The scoring logic follows standard Japanese Mahjong rules.
 -   If you have suggestions or want to contribute, please open an issue or submit a PR.
 
