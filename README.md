@@ -1,40 +1,40 @@
 # 📜 Mahjong Calculator
-이 프로젝트는 오프라인에서 마작 점수를 쉽게 계산할 수 있는 웹 애플리케이션입니다. React와 Recoil을 사용하여 구현되었으며, 마작 게임 중 점수 계산과 관리에 도움을 줍니다.
+This project is a web application designed to easily calculate Mahjong scores offline. It is built using React and Recoil to assist in calculating and managing scores during Mahjong games.
 
-[웹페이지 바로가기](https://mahjong-calculator-test.vercel.app/)
+[Go to the webpage](https://mahjong-calculator-test.vercel.app/)
 
-## ✨ 주요 기능
--   **점수 계산**: 판수와 부수를 선택하여 자동으로 점수를 계산합니다.
--   **오야 관리**: 현재 오야를 설정하고, 연속 승리에 따른 연장 횟수를 관리합니다.
--   **리치 및 텐파이 상태**: 각 플레이어의 리치 및 텐파이 상태를 표시하고 관리합니다.
--   **유국 처리**: 유국 시 텐파이 인원 수에 따라 점수를 자동으로 계산합니다.
--   **점수 수정 모드**: 게임 중 언제든지 각 플레이어의 점수를 직접 수정할 수 있습니다.
+## ✨ Key Features
+-   **Score Calculation**: Automatically calculates the score by selecting the number of fans and fus.
+-   **Dealer Management**: Set the current dealer and manage the extension count based on consecutive wins.
+-   **Richii and Tenpai Status**: Displays and manages the Richii and Tenpai status of each player.
+-   **Draw Processing**: Automatically calculates the score based on the number of Tenpai players in the case of a draw.
+-   **Score Edit Mode**: Allows manual score adjustments for each player during the game.
 
-## 🚀 설치 방법
-1. **리포지토리 클론**
+## 🚀 Installation Instructions
+1. **Clone the repository**
 	```bash
 	git clone https://github.com/habaekk/mahjong-calculator.git
 	cd mahjong-calculator
 	```
-2. **패키지 설치**
+2. Install dependencies
 	```bash
 	npm install
 	```
-	혹은
+	or
 	```bash
 	yarn install
 	```
-## 🔥 실행 방법
+## 🔥 Running the Application
 ```bash
 npm start
 ```
-또는
+or
 ```bash
 yarn start
 ```
-애플리케이션은 기본적으로 `http://localhost:3000`에서 실행됩니다.
+The application will run by default on `http://localhost:3000`.
 
-## 📂 프로젝트 구조
+## 📂 Project Structure
 ```plain text
 mahjong-cal/
 ├── package.json
@@ -71,60 +71,60 @@ mahjong-cal/
     ├── useCalculateRon.js
     └── useCalculateTsu.js
 ```
-## 📋 주요 코드 설명
+## 📋 Code Overview
 ### `App.js`
 
--   애플리케이션의 메인 컴포넌트로, 전체적인 게임 상태와 플레이어 상태를 관리합니다.
--   플레이어의 점수, 오야, 리치, 텐파이 상태를 표시하고 관리합니다.
--   모달 창을 통해 판수와 부수를 선택하여 점수를 계산합니다.
+-   This is the main component of the application, managing the overall game state and player states.
+-   It displays and manages player scores, dealer status, Richii, and Tenpai status.
+-   A modal window allows selecting fans and fus to calculate scores.
 
 ### `Modal.js`
 
--   판수와 부수를 선택할 수 있는 그리드 형태의 모달 컴포넌트입니다.
--   선택된 값에 따라 `useCalculateRon` 또는 `useCalculateTsu` 훅을 사용하여 점수를 계산합니다.
+-   A grid-based modal component where users can select the number of fans and fus.
+-   Depending on the selected values, it uses the `useCalculateRon` or `useCalculateTsu` hook to calculate scores.
 
 ### `useCalculateRon.js` & `useCalculateTsu.js`
 
--   각각 론과 츠모 시의 점수를 계산하는 커스텀 훅입니다.
--   점수 데이터는 `score_data` 폴더 내의 JSON 파일에서 가져옵니다.
--   계산된 점수를 각 플레이어의 상태에 반영합니다.
+-   -   These are custom hooks that calculate scores for Ron and Tsumo scenarios.
+-   Score data is pulled from JSON files in the `score_data` folder.
+-   The calculated scores are reflected in each player's state.
 
 ### `recoil` 폴더
 
--   애플리케이션 상태 관리를 위한 Recoil atoms과 selectors가 포함되어 있습니다.
--   `playersState`: 플레이어들의 상태를 관리하는 atom.
--   `gameStateAtom`: 게임의 전반적인 상태(오야, 연장 횟수 등)를 관리하는 atom.
--   `reachCountState` & `tenpaiCountState`: 리치와 텐파이 상태의 플레이어 수를 계산하는 selector.
+-   Contains Recoil atoms and selectors for application state management.
+-   `playersState`: Atom managing the state of the players.
+-   `gameStateAtom`: Atom managing the overall game state (e.g., dealer, extension count).
+-   `reachCountState` & `tenpaiCountState`: Selectors for calculating the number of players in Richii or Tenpai states.
 
-## 🛠️ 사용 방법
--   **플레이어 클릭**
+## 🛠️ Usage Instructions
+-   -   **Player Click**:
     
-    -   중앙의 그리드에서 플레이어 위치를 클릭하여 승자를 선택합니다.
-    -   론인 경우 승자와 패자를 순서대로 클릭합니다.
-    -   츠모인 경우 승자만 클릭합니다.
--   **판수와 부수 선택**
+    -   Click the player's position on the central grid to select the winner.
+    -   In the case of Ron, click the winner and then the loser.
+    -   In the case of Tsumo, only the winner is clicked.
+-   **Select Fans and Fus**:
     
-    -   모달 창에서 해당하는 판수와 부수를 선택합니다.
--   **점수 계산**
+    -   Select the corresponding fans and fus in the modal window.
+-   **Score Calculation**:
     
-    -   선택한 값에 따라 자동으로 점수가 계산되어 플레이어들의 점수에 반영됩니다.
--   **오야 변경**
+    -   Scores are automatically calculated and reflected in the players' scores based on the selected values.
+-   **Change Dealer**:
     
-    -   필요 시 '오야' 버튼을 눌러 현재 오야를 변경할 수 있습니다.
--   **리치 및 텐파이 상태 관리**
+    -   Use the "Dealer" button to change the current dealer when necessary.
+-   **Manage Richii and Tenpai Status**:
     
-    -   각 플레이어의 '리치', '텐파이' 버튼을 눌러 상태를 변경할 수 있습니다.
--   **점수 수정 모드**
+    -   Use the "Richii" and "Tenpai" buttons to manage each player's status.
+-   **Score Edit Mode**:
     
-    -   '점수 수정' 버튼을 눌러 직접 점수를 수정할 수 있습니다.
--   **유국 처리**
+    -   Use the "Edit Score" button to manually adjust scores.
+-   **Draw Processing**:
     
-    -   '유국 실행' 버튼을 눌러 유국 시의 점수를 자동으로 계산합니다.
+    -   Use the "Process Draw" button to automatically calculate scores during a draw scenario.
 
-## 📋 추가 정보
+## 📋 Additional Information
 
--   이 프로젝트는 React를 기반으로 하고 있으며, 상태 관리를 위해 Recoil을 사용합니다.
--   점수 계산 로직은 일본 마작의 일반적인 룰을 따릅니다.
--   기여나 제안 사항이 있으시면 이슈나 PR을 남겨주세요.
+-   This project is built on React and uses Recoil for state management.
+-   The scoring logic follows standard Japanese Mahjong rules.
+-   If you have suggestions or want to contribute, please open an issue or submit a PR.
 
-## 🛡️ 라이선스
+## 🛡️ License
