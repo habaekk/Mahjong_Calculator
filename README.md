@@ -1,4 +1,9 @@
 # 📜 Mahjong Calculator
+
+[English](https://github.com/habaekk/Mahjong_Calculator) | [한국어](https://github.com/habaekk/Mahjong_Calculator/blob/master/README_kr.md)
+
+  
+
 This project is a web application designed to easily calculate Japanese Mahjong scores. It is built using React and Recoil to assist in calculating and managing scores during Mahjong games.
 
 [Go to the webpage](https://mahjong-calculator-test.vercel.app/)
