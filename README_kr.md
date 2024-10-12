@@ -1,5 +1,5 @@
 # 📜 Mahjong Calculator
-이 프로젝트는 오프라인에서 마작 점수를 쉽게 계산할 수 있는 웹 애플리케이션입니다. React와 Recoil을 사용하여 구현되었으며, 마작 게임 중 점수 계산과 관리에 도움을 줍니다.
+이 프로젝트는 일본식 마작 점수를 쉽게 계산할 수 있는 웹 애플리케이션입니다. React와 Recoil을 사용하여 구현되었으며, 마작 게임 중 점수 계산과 관리에 도움을 줍니다.
 
 [웹페이지 바로가기](https://mahjong-calculator-test.vercel.app/)
 

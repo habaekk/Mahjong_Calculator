@@ -1,5 +1,5 @@
 # 📜 Mahjong Calculator
-This project is a web application designed to easily calculate Mahjong scores offline. It is built using React and Recoil to assist in calculating and managing scores during Mahjong games.
+This project is a web application designed to easily calculate Japanese Mahjong scores. It is built using React and Recoil to assist in calculating and managing scores during Mahjong games.
 
 [Go to the webpage](https://mahjong-calculator-test.vercel.app/)
 
