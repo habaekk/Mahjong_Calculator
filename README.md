@@ -89,7 +89,7 @@ mahjong-cal/
 -   Score data is pulled from JSON files in the `score_data` folder.
 -   The calculated scores are reflected in each player's state.
 
-### `recoil` 폴더
+### `recoil` Folder
 
 -   Contains Recoil atoms and selectors for application state management.
 -   `playersState`: Atom managing the state of the players.
